@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Controleur;
+import Modele.Modele_imprimante;
 import DAO.Singleton;
 import java.sql.*;
 
@@ -13,11 +14,11 @@ import java.sql.*;
 public class informations_imprimantes {
     Singleton conn = new Singleton();
     Connection connection = conn.getConnexion();
-    int id;
-    String marque = null;
-    String modele = null;
-    String ref = null;
-    
+    private int id;
+    private String marque = null;
+    private String modele = null;
+    private String ref = null;
+    Modele_imprimante imp;
     
     public void idFromDataBase(String reference){
         
@@ -29,6 +30,7 @@ public class informations_imprimantes {
            if (result.next()) {
 
             id = result.getInt("id_imprimante");
+            System.out.println(id);
         } else {
 
             System.out.println("Aucun enregistrement trouvé pour la référence : " + reference);
@@ -38,10 +40,8 @@ public class informations_imprimantes {
         }
         catch(SQLException e){
             e.printStackTrace();
-        }
-        
-    }
-    
+        }        
+    }    
     public void marqueFromDataBase(){
         
         try{
@@ -50,8 +50,9 @@ public class informations_imprimantes {
             ps.setInt(1, id);
             ResultSet result = ps.executeQuery();
             if (result.next()) {
-
-    } else {
+                marque = result.getString("marque");
+                imp.setMarque(marque);
+            } else {
 
     System.out.println("Aucun enregistrement trouvé pour l'id_imprimante : " + id);
 }
@@ -59,10 +60,8 @@ public class informations_imprimantes {
             ps.close();
             
         }catch(SQLException e){
-            e.printStackTrace();
-            
-        }
-        
+            e.printStackTrace();            
+        }       
     }
     
     public void modeleFromDataBase(){
@@ -73,19 +72,19 @@ public class informations_imprimantes {
             ps.setInt(1, id);
             ResultSet result = ps.executeQuery();
             if (result.next()) {
-
-} else {
-    // Gérez le cas où aucune ligne n'est trouvée pour l'id donné
-    System.out.println("Aucun enregistrement trouvé pour l'id_imprimante : " + id);
-}
+                modele = result.getString("modele");
+                imp.setModele(modele);
+                
+        } else {
+   
+            System.out.println("Aucun enregistrement trouvé pour l'id_imprimante : " + id);
+        }
             result.close();
             ps.close();
             
         }catch(SQLException e){
-            e.printStackTrace();
-            
-        }
-        
+            e.printStackTrace();            
+        }        
      }
      
     public void referenceFromDataBase(){
@@ -96,8 +95,9 @@ public class informations_imprimantes {
             ps.setInt(1, id);
             ResultSet result = ps.executeQuery();
             if (result.next()) {
-            ref = result.getString("reference");
-            new Vue.Modifier().setinfo(ref, modele, marque);
+                ref = result.getString("reference");
+                imp.setReference(ref);
+                
         } else {
             System.out.println("Aucun enregistrement trouvé pour l'id_imprimante : " + id);
         }
@@ -110,6 +110,14 @@ public class informations_imprimantes {
         }
         
      }
-    
+    public String afficherModele(){
+        return imp.getModele();
+    }
+    public String afficherMarque(){
+        return imp.getMarque();
+    }
+    public String afficherRef(){
+        return imp.getReference();
+    }
     
 }
