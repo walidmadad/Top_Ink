@@ -15,7 +15,7 @@ public class Top_Ink {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Vue.index frm = new Vue.index();
+        Vue.PageConnexion frm = new Vue.PageConnexion();
         frm.setVisible(true);
     }
     

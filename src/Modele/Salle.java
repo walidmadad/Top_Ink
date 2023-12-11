@@ -11,4 +11,15 @@ package Modele;
 public class Salle {
     private String designation;
     private String batiment;
+
+    public Salle(String unDesignation, String unBatiment){
+        this.designation = unDesignation;
+        this.batiment = unBatiment;
+    }
+    public String getDesignation(){
+        return this.designation;
+    }
+    public String getBatiment(){
+        return this.batiment;
+    }
 }
