@@ -128,12 +128,14 @@ public class Imprimantes extends javax.swing.JFrame {
         // TODO add your handling code here:
         EcranGeneral frm2 = new EcranGeneral();
         frm2.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Ajouter frm = new Ajouter();
         frm.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -142,11 +144,12 @@ public class Imprimantes extends javax.swing.JFrame {
         String ref = this.liste_imprimantes.getSelectedValue();
         Controleur.informations_imprimantes imp = new Controleur.informations_imprimantes();
         imp.idFromDataBase(ref);
-        imp.marqueFromDataBase();
+        
         imp.modeleFromDataBase();
         imp.referenceFromDataBase();
         ModifierImprimante frm = new ModifierImprimante();
         frm.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnSupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupActionPerformed
